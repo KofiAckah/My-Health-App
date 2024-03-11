@@ -14,6 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/native": "^6.1.14",
     "@react-navigation/stack": "^6.3.25",
@@ -22,7 +23,9 @@
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "0.73.4",
-    "react-native-gesture-handler": "~2.14.0"
+    "react-native-gesture-handler": "~2.14.0",
+    "react-native-svg": "^15.1.0",
+    "react-native-vector-icons": "^10.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

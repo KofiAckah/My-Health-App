@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-primary-100 text-white">
       <StatusBar />
       {/* <Health />
       <Workout /> */}

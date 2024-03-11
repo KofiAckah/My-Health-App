@@ -1,16 +1,27 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, ScrollView } from "react-native";
 import React from "react";
+import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const Health = () => {
   const navigation = useNavigation();
   return (
-    <View className="flex-1">
-      <Text className="text-center text-green-500 text-xl">Health View</Text>
-      <Text className="text-red-500">
-        Open up App.js to start working on your app!
-      </Text>
-      <Button title="Click On Me" onPress={() => navigation.navigate("Help")} />
+    <View className="flex-1  bg-primary-100">
+      <HeadName title="health" />
+      <ScrollView>
+        <View className="w-full flex">
+          <View className="mx-3"></View>
+          <View className="mx-3 flex flex-col">
+            <Text className="text-white">Steps</Text>
+            <Text className="text-white">3564/4000</Text>
+            <Text className="text-white">Calories</Text>
+            <Text className="text-white">146/300</Text>
+            <Text className="text-white">Workout Duration</Text>
+            <Text className="text-white">0/30</Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };

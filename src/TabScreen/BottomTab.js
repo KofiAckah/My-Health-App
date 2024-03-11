@@ -1,10 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as faHeartOutlined } from "@fortawesome/free-regular-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { usePathname } from "next/navigation";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Health from "./Health";
 import Workout from "./Workout";
@@ -12,41 +10,39 @@ import Device from "./Device";
 import Profile from "./Profile";
 
 const Tab = createBottomTabNavigator();
-const Links = [
-  { label: "home", href: "/", icon: "fa-solid fa-heart" },
-  { label: "home", href: "/", icon: "fa-solid fa-heart" },
-  { label: "home", href: "/", icon: "fa-solid fa-heart" },
-  { label: "home", href: "/", icon: "fa-solid fa-heart" },
-  { label: "home", href: "/", icon: "fa-solid fa-heart" },
-];
+
 const BottomTab = () => {
   return (
     <Tab.Navigator
       initialRouteName={Health}
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({ focused, color }) => {
+        tabBarIcon: ({ size }) => {
           let iconName;
           if (route.name === "Health") {
-            iconName = focused
-              ? (icon = "fa-solid fa-heart")
-              : (icon = "fa-regular fa-heart");
+            iconName = "heart";
           } else if (route.name === "Workout") {
-            iconName = focused
-              ? (icon = "fa-solid fa-heart")
-              : (icon = "fa-regular fa-heart");
+            iconName = "run";
           } else if (route.name === "Device") {
-            iconName = focused
-              ? (icon = "fa-solid fa-heart")
-              : (icon = "fa-regular fa-heart");
+            iconName = "watch";
+            return <Feather name={iconName} size={size} />;
           } else if (route.name === "Profile") {
-            iconName = focused
-              ? (icon = "fa-solid fa-heart")
-              : (icon = "fa-regular fa-heart");
+            iconName = "person";
+            return <Ionicons name={iconName} size={size} />;
           }
-          return <FontAwesomeIcon icon={iconName} />;
+          return <MaterialCommunityIcons name={iconName} size={size} />;
         },
       })}
+      tabBarOptions={{
+        activeTintColor: "#1AB65C",
+        inactiveTintColor: "gray",
+        labelStyle: {
+          fontSize: 12,
+        },
+        activeBackgroundColor: "#181A20",
+        inactiveBackgroundColor: "#181A20",
+        height: 100,
+      }}
     >
       <Tab.Screen name="Health" component={Health} />
       <Tab.Screen name="Workout" component={Workout} />

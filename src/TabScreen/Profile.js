@@ -1,13 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
+import HeadName from "../Components/HeadName";
+import { useNavigation } from "@react-navigation/native";
 
 const Profile = () => {
   return (
-    <View>
-      <Text className="text-center text-green-500 text-xl">Profile View</Text>
-      <Text className="text-red-500">
-        Open up App.js to start working on your app!
-      </Text>
+    <View className="flex-1 bg-primary-100">
+      <HeadName title="Me" />
     </View>
   );
 };
