@@ -1,5 +1,8 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  createBottomTabNavigator,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -10,6 +13,7 @@ import Device from "./Device";
 import Profile from "./Profile";
 
 const Tab = createBottomTabNavigator();
+// const tabBarHeight = useBottomTabBarHeight();
 
 const BottomTab = () => {
   return (
@@ -17,37 +21,42 @@ const BottomTab = () => {
       initialRouteName={Health}
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarIcon: ({ size }) => {
+        tabBarIcon: ({ size, color, focused }) => {
           let iconName;
           if (route.name === "Health") {
             iconName = "heart";
+            color = focused ? "#f46e0b" : "#7e7e7e";
           } else if (route.name === "Workout") {
             iconName = "run";
+            color = focused ? "#f46e0b" : "#7e7e7e";
           } else if (route.name === "Device") {
             iconName = "watch";
-            return <Feather name={iconName} size={size} />;
-          } else if (route.name === "Profile") {
+            color = focused ? "#f46e0b" : "#7e7e7e";
+            return <Feather name={iconName} size={size} color={color} />;
+          } else if (route.name === "Me") {
             iconName = "person";
-            return <Ionicons name={iconName} size={size} />;
+            color = focused ? "#f46e0b" : "#7e7e7e";
+            return <Ionicons name={iconName} size={size} color={color} />;
           }
-          return <MaterialCommunityIcons name={iconName} size={size} />;
+          return (
+            <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          );
         },
       })}
       tabBarOptions={{
-        activeTintColor: "#1AB65C",
-        inactiveTintColor: "gray",
+        activeTintColor: "#f46e0b",
+        inactiveTintColor: "#7e7e7e",
         labelStyle: {
           fontSize: 12,
         },
-        activeBackgroundColor: "#181A20",
-        inactiveBackgroundColor: "#181A20",
-        height: 100,
+        activeBackgroundColor: "#262626",
+        inactiveBackgroundColor: "#262626",
       }}
     >
       <Tab.Screen name="Health" component={Health} />
       <Tab.Screen name="Workout" component={Workout} />
       <Tab.Screen name="Device" component={Device} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Me" component={Profile} />
     </Tab.Navigator>
   );
 };
