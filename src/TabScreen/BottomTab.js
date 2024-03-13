@@ -52,6 +52,9 @@ const BottomTab = () => {
         activeBackgroundColor: "#262626",
         inactiveBackgroundColor: "#262626",
       }}
+      tabBarStyle={{
+        display: "flex",
+      }}
     >
       <Tab.Screen name="Health" component={Health} />
       <Tab.Screen name="Workout" component={Workout} />

@@ -4,6 +4,7 @@ import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+// import CircularProgress from "../Components/CircularProgress";
 
 const Health = () => {
   const navigation = useNavigation();
