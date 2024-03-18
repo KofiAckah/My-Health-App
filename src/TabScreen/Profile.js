@@ -14,13 +14,13 @@ const Profile = () => {
   return (
     <View className="flex-1 bg-primary-100">
       <HeadName title="Me" />
-      <View className="mx-10">
-        <TouchableOpacity className="flex flex-row items-center bg-red-500">
-          <View className="rounded-full bg-gray-800 h-28 w-28 flex justify-center items-center">
-            <FontAwesome name="user" color="white" size={70} />
-          </View>
-          <Text className="text-white ml-5">User Name</Text>
-        </TouchableOpacity>
+      <View className="mx-10 py-14">
+        <View className="flex flex-row items-center ">
+          <TouchableOpacity className="rounded-full bg-gray-800 h-20 w-20 flex justify-center items-center">
+            <FontAwesome name="user" color="white" size={40} />
+          </TouchableOpacity>
+          <Text className="text-white px-5">User Name</Text>
+        </View>
       </View>
       <TouchableOpacity className="flex flex-row items-center m-4">
         <View className="rounded-full bg-primary-200 p-1 w-8 h-8 flex justify-center items-center">
