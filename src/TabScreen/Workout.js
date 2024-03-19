@@ -4,33 +4,50 @@ import {
   FlatList,
   TouchableOpacity,
   useWindowDimensions,
-  ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
 
 const Workout = () => {
+  const navigation = useNavigation();
   const check = [1, 2, 3, 4, 5, 6];
-  const [txtColor, setTxtColor] = useState(true);
+  const flatListRef = useRef(null);
+  const [currentVisibleIndex, setCurrentVisibleIndex] = useState(0);
+  const [txtColor, setTxtColor] = useState(1);
 
-  function handleColor() {
-    setTxtColor(!txtColor);
-    // setTxtColor((!prevState) = !prevState, console.log(txtColor));
+  function handleColor(pageNumber) {
+    setTxtColor(pageNumber);
+    flatListRef.current.scrollToIndex({
+      animated: true,
+      index: pageNumber - 1,
+    });
   }
-
   const { width } = useWindowDimensions();
+
+  const handleFlatListScroll = (event) => {
+    const { contentOffset } = event.nativeEvent;
+    const index = Math.round(contentOffset.x / width);
+    setCurrentVisibleIndex(index);
+    setTxtColor(index + 1);
+  };
 
   return (
     <View className="flex-1 bg-primary-100">
       <HeadName title="Workouts" />
-
       <FlatList
         className="bg-yellow-500 flex-[0.05]"
         data={check}
         renderItem={(items) => (
-          <TouchableOpacity onPress={handleColor} className="mx-5">
-            <Text className={`text-${txtColor ? "white" : "red-500"}`}>
+          <TouchableOpacity
+            onPress={() => handleColor(items.item)}
+            className="mx-5"
+          >
+            <Text
+              className={`text-${
+                items.item === txtColor ? "white" : "primary-200"
+              }`}
+            >
               Page {items.item}
             </Text>
           </TouchableOpacity>
@@ -38,6 +55,7 @@ const Workout = () => {
         horizontal
       />
       <FlatList
+        ref={flatListRef}
         data={check}
         renderItem={(items) => (
           <View
@@ -52,17 +70,10 @@ const Workout = () => {
         )}
         horizontal
         pagingEnabled
+        onScroll={handleFlatListScroll}
       />
     </View>
   );
 };
 
 export default Workout;
-
-{
-  /* <ScrollView horizontal={true} className="bg-green-500 flex-[0.1]">
-        {check.map((item) => (
-          <Text className="text-white mx-5">S Page{item}</Text>
-        ))}
-      </ScrollView> */
-}
