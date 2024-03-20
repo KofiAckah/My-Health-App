@@ -8,13 +8,21 @@ import {
 import React, { useState, useRef } from "react";
 import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
+import { WorkOutData } from "../Data/WorkOutData";
 
 const Workout = () => {
   const navigation = useNavigation();
-  const check = [1, 2, 3, 4, 5, 6];
+  const check = [
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 },
+    { id: 6 },
+  ];
   const flatListRef = useRef(null);
   const [currentVisibleIndex, setCurrentVisibleIndex] = useState(0);
-  const [txtColor, setTxtColor] = useState(1);
+  const [txtColor, setTxtColor] = useState(check[0]);
 
   function handleColor(pageNumber) {
     setTxtColor(pageNumber);
@@ -37,18 +45,18 @@ const Workout = () => {
       <HeadName title="Workouts" />
       <FlatList
         className="bg-yellow-500 flex-[0.05]"
-        data={check}
-        renderItem={(items) => (
+        data={WorkOutData}
+        renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => handleColor(items.item)}
+            onPress={() => handleColor(item.id)}
             className="mx-5"
           >
             <Text
               className={`text-${
-                items.item === txtColor ? "white" : "primary-200"
+                item.id === txtColor ? "white" : "primary-200"
               }`}
             >
-              Page {items.item}
+              Page {item.name}
             </Text>
           </TouchableOpacity>
         )}
@@ -56,13 +64,18 @@ const Workout = () => {
       />
       <FlatList
         ref={flatListRef}
-        data={check}
-        renderItem={(items) => (
+        data={WorkOutData}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
           <View
             className={`flex flex-row justify-between items-center`}
             style={{ width }}
           >
-            <Text className="text-white text-xl">Workout {items.item}</Text>
+            <View>
+              <Text className="text-white text-xl">Workout {item.id}</Text>
+              <Text className="text-white">{item.des} </Text>
+            </View>
+
             <TouchableOpacity className="bg-primary-200 w-20 h-10 rounded-full flex justify-center items-center">
               <Text className="text-white">Start</Text>
             </TouchableOpacity>
