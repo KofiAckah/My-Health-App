@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
@@ -8,6 +8,7 @@ const Device = () => {
     <View className="flex-1 bg-primary-100">
       <HeadName title="Devices" />
       <View className="flex-1 justify-center items-center">
+        {/* <Image source={require("../../assets/Images/Working.gif")} /> */}
         <Text className="text-white font-semibold text-xl">
           Smart Devices Just for You
         </Text>
