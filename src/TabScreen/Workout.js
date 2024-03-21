@@ -11,6 +11,9 @@ import HeadName from "../Components/HeadName";
 import { useNavigation } from "@react-navigation/native";
 import { WorkOutData } from "../Data/WorkOutData";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Foundation from "react-native-vector-icons/Foundation";
+import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Workout = () => {
   const navigation = useNavigation();
@@ -68,6 +71,7 @@ const Workout = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View className={`flex`} style={{ width }}>
+            {/* Display if Id <= 3 else don't display */}
             <View
               className={`${
                 item.id <= 3 ? "block" : "hidden"
@@ -88,6 +92,7 @@ const Workout = () => {
                 km
               </Text>
             </View>
+            {/* Display if Id <= 3 else don't display */}
             <TouchableOpacity>
               <Text
                 className={`text-gray-500  ${
@@ -98,8 +103,46 @@ const Workout = () => {
                 <AntDesign name="caretright" className="text-gray-500" />
               </Text>
             </TouchableOpacity>
-            <Image source={item.image} className="w-full h-[50%]" />
-            <View></View>
+            <Image source={item.image} className="w-full h-[35%]" />
+            {/* Display if Id <= 3 else don't display */}
+            <View
+              className={`flex flex-row justify-between items-center mx-16 -bottom-20 ${
+                item.id <= 3 ? "block" : "hidden"
+              }`}
+            >
+              <View className="bg-primary-300 p-3 flex items-center justify-center rounded-full">
+                <Foundation name="target-two" className="" size={35} />
+              </View>
+              <View className="bg-primary-200 p-6 flex items-center justify-center rounded-full">
+                <FontAwesome6 name="person-running" color="white" size={50} />
+              </View>
+              <View className="bg-primary-300 p-3 flex items-center justify-center rounded-full">
+                <MaterialIcons name="hexagon" className="" size={35} />
+              </View>
+            </View>
+            {/* Display if Id greater than 3*/}
+            <View className={`${item.id > 3 ? "block" : "hidden"} mx-3`}>
+              <Text className="text-white font-semibold text-lg">
+                Getting started
+              </Text>
+              <Text className="text-gray-400 text-sm">
+                With the smart watch you can track your workout data and
+                progress:
+              </Text>
+              <Text className="text-gray-400 text-sm">
+                1. Activate {item.name} mode on the watch.
+              </Text>
+              <Text className="text-gray-400 text-sm">
+                2. Connect the watch to your phone. You cna view your workout
+                data, such as calories burned and duration, on your phone
+              </Text>
+              <Text className="text-white font-semibold text-lg mt-7">
+                Supported devices:
+              </Text>
+              <Text className="text-gray-400 text-sm">
+                Tecno Watch 2, TECNO WATCH PRO, TECNO Watch 3, TECNO Watch Pro 2
+              </Text>
+            </View>
           </View>
         )}
         horizontal
