@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
     "@fseehawer/react-circular-slider": "^2.6.4",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-navigation/bottom-tabs": "^6.5.16",
     "@react-navigation/native": "^6.1.14",
     "@react-navigation/stack": "^6.3.25",
