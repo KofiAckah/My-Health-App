@@ -22,7 +22,10 @@ const Profile = () => {
           <Text className="text-white px-5">User Name</Text>
         </View>
       </View>
-      <TouchableOpacity className="flex flex-row items-center m-4">
+      <TouchableOpacity
+        className="flex flex-row items-center m-4"
+        onPress={() => navigation.navigate("ProfileInfo")}
+      >
         <View className="rounded-full bg-primary-200 p-1 w-8 h-8 flex justify-center items-center">
           <FontAwesome name="user" color="white" size={20} />
         </View>

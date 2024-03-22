@@ -49,7 +49,7 @@ const Workout = () => {
     <View className="flex-1 bg-primary-100">
       <HeadName title="Workouts" />
       <FlatList
-        className="flex-[0.1] my-2"
+        className="flex-[0.5] my-2 bg-yellow-500"
         data={WorkOutData}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -57,13 +57,16 @@ const Workout = () => {
             className="mx-5"
           >
             <Text
-              className={`text-${item.id === txtColor ? "red-500" : "white"}`}
+              className={`text-${
+                item.id === txtColor ? "red-500" : "white"
+              } font-semibold text-base`}
             >
               {item.name}
             </Text>
           </TouchableOpacity>
         )}
         horizontal
+        showsHorizontalScrollIndicator={false}
       />
       <FlatList
         ref={flatListRef}
@@ -103,7 +106,18 @@ const Workout = () => {
                 <AntDesign name="caretright" className="text-gray-500" />
               </Text>
             </TouchableOpacity>
-            <Image source={item.image} className="w-full h-[35%]" />
+            {/* Display this image if id <= 3 */}
+            <Image
+              source={item.image}
+              className={`w-full h-[50%] ${item.id <= 3 ? "block" : "hidden"}`}
+            />
+            {/* Display image if id is greater 3 */}
+            <Image
+              source={item.image}
+              className={`w-[90%] h-[35%] ${
+                item.id > 3 ? "block" : "hidden"
+              } mx-auto rounded-xl`}
+            />
             {/* Display if Id <= 3 else don't display */}
             <View
               className={`flex flex-row justify-between items-center mx-16 -bottom-20 ${
@@ -121,7 +135,11 @@ const Workout = () => {
               </View>
             </View>
             {/* Display if Id greater than 3*/}
-            <View className={`${item.id > 3 ? "block" : "hidden"} mx-3`}>
+            <View
+              className={`${
+                item.id > 3 ? "block" : "hidden"
+              } mx-auto w-[90%] mt-6`}
+            >
               <Text className="text-white font-semibold text-lg">
                 Getting started
               </Text>
@@ -148,6 +166,7 @@ const Workout = () => {
         horizontal
         pagingEnabled
         onScroll={handleFlatListScroll}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );
